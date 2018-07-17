@@ -1,5 +1,12 @@
 ---
 # tasks file for apigee-opdk-settings-postgres
+# Postgres command line tool
+- name: Set command line tools
+  cache:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items:
+  - { key: "psql", value: "{{ psql }}" }
 
 - name: Refresh setup
   setup:
