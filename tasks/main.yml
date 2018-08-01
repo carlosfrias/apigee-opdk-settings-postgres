@@ -17,6 +17,12 @@
     key: 'interface_name'
     value: 'ansible_{{ ansible_default_ipv4.interface }}'
 
+- name: Assert properties are available
+  assert:
+    that:
+    - interface_name is defined
+    msg: "Please provide missing properties"
+
 - block:
   - name: Obtain pgmaster IP for DC 2, if not provided
     set_fact:
