@@ -10,7 +10,6 @@
 
 - name: Refresh setup
   setup:
-  when: ansible_default_ipv4 is not defined
 
 - name: Normalized network interface name
   cache:
