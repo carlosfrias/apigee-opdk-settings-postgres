@@ -47,6 +47,9 @@
   when: (groups['dc-2-pgmaster'] is defined or groups['dc-2-pgstandby'] is defined) and inventory_hostname in groups['dc-2']
 
 - block:
+  - name: Update setup
+    setup:
+
   - name: Obtain pgmaster IP for DC 1, if not provided
     set_fact:
       pgmaster_ip: "{{ hostvars[groups['dc-1-pgmaster'][0]][interface_name].ipv4.address }}"
