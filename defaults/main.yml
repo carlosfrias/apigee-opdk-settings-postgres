@@ -9,3 +9,7 @@ pg_dump: "/usr/bin/pg_dump"
 
 # Apigee Postgres Data Directory
 apigee_postgresql_data_dir: '{{ apigee_home }}/data/apigee-postgresql/pgdata'
+
+# Apigee default installation folder
+apigee_home: /opt/apigee
+
