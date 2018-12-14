@@ -1,6 +1,10 @@
 ---
 # tasks file for apigee-opdk-settings-postgres
 # Postgres command line tool
+- name: Refresh setup
+  setup:
+  when: ansible_default_ipv4 not defined or ansible_default_ipv4.interface not defined
+
 - name: Set command line tools
   cache:
     key: "{{ item.key }}"
@@ -9,14 +13,7 @@
   - { key: "psql", value: "{{ psql }}" }
   - { key: "pg_dump", value: "{{ pg_dump }}" }
   - { key: "apigee_postgresql_data_dir", value: "{{ apigee_postgresql_data_dir }}" }
-
-- name: Refresh setup
-  setup:
-
-- name: Normalized network interface name
-  cache:
-    key: 'interface_name'
-    value: 'ansible_{{ ansible_default_ipv4.interface }}'
+  - { key: 'interface_name', value: 'ansible_{{ ansible_default_ipv4.interface }}' }
 
 - name: Assert properties are available
   assert:
