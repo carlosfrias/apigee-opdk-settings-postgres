@@ -21,7 +21,7 @@
       pgstandby_ip: "{{ hostvars[groups['dc-2-pgstandby'][0]]['private_address'] }}"
     when: groups['dc-2-pgstandby'] is defined
 
-  when: inventory_hostname in groups['dc-2']
+  when: groups['dc-2'] is defined and inventory_hostname in groups['dc-2']
 
 - block:
   - name: Update setup
@@ -39,7 +39,7 @@
       pgstandby_ip: "{{ hostvars[groups['dc-1-pgstandby'][0]]['private_address'] }}"
     when: groups['dc-1-pgstandby'] is defined
 
-  when: inventory_hostname in groups['dc-1']
+  when: groups['dc-1'] is defined and inventory_hostname in groups['dc-1']
 
 - block:
   - name: Obtain pgmaster IP from DC 1
